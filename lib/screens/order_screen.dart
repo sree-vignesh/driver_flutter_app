@@ -1,4 +1,6 @@
+import 'package:driver_app/utils/navigation_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/order.dart';
 import '../state/order_state.dart';
 
@@ -86,6 +88,25 @@ class _OrderScreenState extends State<OrderScreen> {
             ElevatedButton(
               onPressed: status == OrderStatus.delivered ? null : _nextStep,
               child: Text(_getButtonText()),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                NavigationHelper.openGoogleMaps(
+                  order.restaurantLat,
+                  order.restaurantLng,
+                );
+              },
+              child: Text("Navigate to Restaurant"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                NavigationHelper.openGoogleMaps(
+                  order.customerLat,
+                  order.customerLng,
+                );
+              },
+              child: Text("Navigate to Customer"),
             ),
 
             const SizedBox(height: 24),

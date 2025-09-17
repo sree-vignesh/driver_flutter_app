@@ -15,7 +15,7 @@ class DriverApp extends StatelessWidget {
       title: 'Driver App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.amber, useMaterial3: true),
-      initialRoute: '/',
+      initialRoute: '/order',
       routes: {
         '/': (context) => const LoginScreen(),
         '/order': (context) => const OrderScreen(),
