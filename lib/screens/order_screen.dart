@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:driver_app/components/appbar_custom.dart';
 import 'package:driver_app/components/order_card.dart';
 import 'package:driver_app/core/colors.dart';
 import 'package:driver_app/utils/navigation_helper.dart';
@@ -184,30 +185,30 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
       ),
-
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        toolbarHeight: 100,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Hi, Captain!",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              _getStatusText(),
-              style: const TextStyle(
-                fontSize: 23,
-                color: AppColors.primary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(statusText: _getStatusText()),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.white,
+      //   toolbarHeight: 100,
+      //   title: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.start,
+      //     children: [
+      //       const Text(
+      //         "Hi, Captain!",
+      //         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+      //       ),
+      //       const SizedBox(height: 10),
+      //       Text(
+      //         _getStatusText(),
+      //         style: const TextStyle(
+      //           fontSize: 23,
+      //           color: AppColors.primary,
+      //           fontWeight: FontWeight.w600,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(0),
         child: OrderCard(
