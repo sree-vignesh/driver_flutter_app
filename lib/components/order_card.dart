@@ -48,8 +48,10 @@ class OrderCard extends StatelessWidget {
             _locationTile(
               icon: Icons.store,
               title: order.restaurantName,
+
+              // if(distanceToRestaurant < 1000)
               subtitle:
-                  "Distance: ${distanceToRestaurant?.toStringAsFixed(0) ?? '--'} m",
+                  "You are ${distanceToRestaurant?.toStringAsFixed(0) ?? '--'} m away.",
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.restaurantLat,
                 order.restaurantLng,
@@ -64,7 +66,7 @@ class OrderCard extends StatelessWidget {
               icon: Icons.location_pin,
               title: order.customerName,
               subtitle:
-                  "Distance: ${distanceToCustomer?.toStringAsFixed(0) ?? '--'} m",
+                  "You are ${distanceToCustomer?.toStringAsFixed(0) ?? '--'} m away.",
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.customerLat,
                 order.customerLng,
@@ -88,14 +90,26 @@ class OrderCard extends StatelessWidget {
       leading: Icon(icon, color: Colors.green),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
       subtitle: Text(subtitle),
-      trailing: TextButton.icon(
-        onPressed: onTap,
-        icon: const Icon(Icons.navigation, color: AppColors.primary, size: 28),
-        label: const SizedBox.shrink(),
-        style: TextButton.styleFrom(
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+      trailing: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: 55,
+          child: IconButton(
+            onPressed: onTap,
+            icon: const Icon(
+              Icons.navigation_sharp,
+              color: AppColors.primary,
+              // color: Colors.white,
+              size: 24,
+            ),
+            // label: const SizedBox.shrink(),
+            style: TextButton.styleFrom(
+              side: const BorderSide(color: AppColors.primary, width: 1.5),
+              backgroundColor: Colors.orange.shade50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
           ),
         ),
       ),

@@ -50,7 +50,14 @@ class _SliderButtonState extends State<SliderButton> {
             height: knobSize,
             decoration: BoxDecoration(
               color: widget.enabled ? AppColors.primary : Colors.green,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5), // soft shadow
+                  blurRadius: 8, // how soft the shadow is
+                  offset: const Offset(0, 4), // move shadow down
+                ),
+              ],
             ),
             alignment: Alignment.center,
             child: Text(
@@ -72,7 +79,7 @@ class _SliderButtonState extends State<SliderButton> {
                 height: knobSize,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(24),
                   border: Border.all(color: AppColors.primary, width: 2),
                 ),
                 child: Icon(Icons.arrow_forward, color: AppColors.primary),
