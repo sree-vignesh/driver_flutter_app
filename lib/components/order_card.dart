@@ -20,7 +20,7 @@ class OrderCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 8),
-      elevation: 1,
+      elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(20),
