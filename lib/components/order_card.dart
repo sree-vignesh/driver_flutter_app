@@ -20,7 +20,7 @@ class OrderCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 8),
-      elevation: 4,
+      elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -29,9 +29,24 @@ class OrderCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Order Details",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Order Details",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      order.id,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
                 ),
                 Chip(
                   label: Text(
@@ -51,7 +66,10 @@ class OrderCard extends StatelessWidget {
 
               // if(distanceToRestaurant < 1000)
               subtitle:
-                  "You are ${distanceToRestaurant?.toStringAsFixed(0) ?? '--'} m away.",
+                  (distanceToRestaurant != null && distanceToRestaurant! < 1000)
+                  ? "You are ${distanceToRestaurant} m away."
+                  : "You are too far, get closer.",
+
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.restaurantLat,
                 order.restaurantLng,
@@ -66,7 +84,9 @@ class OrderCard extends StatelessWidget {
               icon: Icons.location_pin,
               title: order.customerName,
               subtitle:
-                  "You are ${distanceToCustomer?.toStringAsFixed(0) ?? '--'} m away.",
+                  (distanceToCustomer != null && distanceToCustomer! < 1000)
+                  ? "You are ${distanceToRestaurant} m away."
+                  : "You are too far, get closer.",
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.customerLat,
                 order.customerLng,
@@ -93,7 +113,7 @@ class OrderCard extends StatelessWidget {
       trailing: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 55,
+          width: 47,
           child: IconButton(
             onPressed: onTap,
             icon: const Icon(

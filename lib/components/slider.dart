@@ -50,6 +50,8 @@ class _SliderButtonState extends State<SliderButton> {
             height: knobSize,
             decoration: BoxDecoration(
               color: widget.enabled ? AppColors.primary : Colors.green,
+
+              // color: Colors.white,
               borderRadius: BorderRadius.circular(24),
               boxShadow: [
                 BoxShadow(

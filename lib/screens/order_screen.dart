@@ -172,6 +172,20 @@ class _OrderScreenState extends State<OrderScreen> {
 
     return Scaffold(
       bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          // color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(48),
+            topRight: Radius.circular(48),
+          ), // curved edges
+          boxShadow: [
+            // BoxShadow(
+            //   color: AppColors.background,
+            //   blurRadius: 8,
+            //   offset: Offset(0, -4),
+            // ),
+          ],
+        ),
         // color: AppColors.background,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
