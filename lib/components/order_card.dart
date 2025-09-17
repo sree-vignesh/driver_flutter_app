@@ -19,9 +19,14 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(vertical: 0),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(36),
+          bottomRight: Radius.circular(36),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -67,7 +72,7 @@ class OrderCard extends StatelessWidget {
               // if(distanceToRestaurant < 1000)
               subtitle:
                   (distanceToRestaurant != null && distanceToRestaurant! < 1000)
-                  ? "You are ${distanceToRestaurant} m away."
+                  ? "You are ${distanceToRestaurant?.toStringAsFixed(0)} m away."
                   : "You are too far, get closer.",
 
               onTap: () => NavigationHelper.openGoogleMaps(
@@ -85,7 +90,7 @@ class OrderCard extends StatelessWidget {
               title: order.customerName,
               subtitle:
                   (distanceToCustomer != null && distanceToCustomer! < 1000)
-                  ? "You are ${distanceToRestaurant} m away."
+                  ? "You are ${distanceToCustomer?.toStringAsFixed(0)} m away."
                   : "You are too far, get closer.",
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.customerLat,

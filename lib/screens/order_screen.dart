@@ -171,38 +171,23 @@ class _OrderScreenState extends State<OrderScreen> {
     }
 
     return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          // color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(48),
-            topRight: Radius.circular(48),
-          ), // curved edges
-          boxShadow: [
-            // BoxShadow(
-            //   color: AppColors.background,
-            //   blurRadius: 8,
-            //   offset: Offset(0, -4),
-            // ),
-          ],
-        ),
-        // color: AppColors.background,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-          child: SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: SliderButton(
-              text: _getButtonText(),
-              enabled: status != OrderStatus.delivered,
-              onConfirmed: _nextStep,
-            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+        child: SizedBox(
+          width: double.infinity,
+          height: 56, // match _barHeight
+          child: SliderButton(
+            text: _getButtonText(),
+            enabled: status != OrderStatus.delivered,
+            onConfirmed: _nextStep,
           ),
         ),
       ),
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
         toolbarHeight: 100,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,7 +200,7 @@ class _OrderScreenState extends State<OrderScreen> {
             Text(
               _getStatusText(),
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 23,
                 color: AppColors.primary,
                 fontWeight: FontWeight.w600,
               ),
@@ -224,7 +209,7 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(0),
         child: OrderCard(
           order: order,
           distanceToRestaurant: distanceToRestaurant,

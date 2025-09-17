@@ -9,4 +9,5 @@ class AppColors {
 
   static const background = Color.fromRGBO(250, 247, 247, 1);
   static const textSecondary = Color.fromRGBO(158, 158, 158, 1);
+  static var scaffoldBackgroundColor = Colors.orange.shade50;
 }

@@ -16,8 +16,8 @@ class DriverApp extends StatelessWidget {
       title: 'Driver App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-        // scaffoldBackgroundColor: AppColors.background,
+        // primarySwatch: Colors.orange,
+        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           surfaceTintColor: Colors.transparent,

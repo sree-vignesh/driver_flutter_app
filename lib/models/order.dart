@@ -24,7 +24,7 @@ class Order {
 const dummyOrder = Order(
   id: "ORD123",
   restaurantName: "Pizza Palace",
-  restaurantLat: 12.9716, // Restaurant coords
+  restaurantLat: 12.9715, // Restaurant coords
   restaurantLng: 77.5946,
   customerName: "John Doe",
   customerLat: 12.9717, // Just ~11m away from restaurant
