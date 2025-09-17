@@ -83,7 +83,7 @@ class _SliderButtonState extends State<SliderButton> {
                   borderRadius: BorderRadius.circular(_barHeight), // pill shape
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.16),
+                      color: Colors.black.withOpacity(0.5),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -115,8 +115,8 @@ class _SliderButtonState extends State<SliderButton> {
                       border: Border.all(color: AppColors.primary, width: 2),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.18),
-                          blurRadius: 6,
+                          color: Colors.black.withOpacity(0.4),
+                          blurRadius: 8,
                           offset: const Offset(0, 3),
                         ),
                       ],
