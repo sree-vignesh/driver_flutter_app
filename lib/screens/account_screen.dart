@@ -98,10 +98,14 @@ class AccountScreen extends StatelessWidget {
             const Center(child: Text("No orders yet"))
           else
             ...previousOrders.map((order) {
+              final timeFormatted =
+                  "${order.time.hour.toString().padLeft(2, '0')}:${order.time.minute.toString().padLeft(2, '0')} "
+                  "${order.time.day}/${order.time.month}/${order.time.year}";
+
               return Card(
-                color: Colors.green.shade50,
-                elevation: 5,
-                shadowColor: Colors.black.withOpacity(0.3),
+                color: Colors.grey.shade50,
+                elevation: 6,
+                shadowColor: Colors.black.withOpacity(0.25),
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -109,7 +113,11 @@ class AccountScreen extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   onTap: () {
-                    // TODO: navigate to order details
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("You have already completed this order."),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -118,7 +126,7 @@ class AccountScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        // Icon or status indicator
+                        // Status icon
                         Container(
                           height: 48,
                           width: 48,
@@ -135,7 +143,7 @@ class AccountScreen extends StatelessWidget {
 
                         const SizedBox(width: 16),
 
-                        // Restaurant + customer
+                        // Restaurant + customer + time
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +156,7 @@ class AccountScreen extends StatelessWidget {
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              const SizedBox(height: 6),
+                              const SizedBox(height: 4),
                               Text(
                                 "Customer: ${order.customerName}",
                                 style: TextStyle(
@@ -156,6 +164,14 @@ class AccountScreen extends StatelessWidget {
                                   color: Colors.grey.shade600,
                                 ),
                                 overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                timeFormatted,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey.shade500,
+                                ),
                               ),
                             ],
                           ),

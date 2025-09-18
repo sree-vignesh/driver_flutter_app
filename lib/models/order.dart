@@ -9,6 +9,7 @@ class Order {
   final double customerLat;
   final double customerLng;
   final double amount;
+  final DateTime time; // 👈 new field
 
   const Order({
     required this.id,
@@ -19,10 +20,11 @@ class Order {
     required this.customerLat,
     required this.customerLng,
     required this.amount,
+    required this.time, // 👈
   });
 }
 
-const dummyOrder = Order(
+var dummyOrder = Order(
   id: "ORD123",
   restaurantName: "The Briyani Shop",
   restaurantLat: 12.9715,
@@ -31,9 +33,10 @@ const dummyOrder = Order(
   customerLat: 12.9717,
   customerLng: 77.5947,
   amount: 450.0,
+  time: DateTime(2025, 9, 17, 18, 45),
 );
 
-const previousOrders = [
+var previousOrders = [
   Order(
     id: "ORD122",
     restaurantName: "The Laddu Shop",
@@ -43,6 +46,7 @@ const previousOrders = [
     customerLat: 12.9730,
     customerLng: 77.5960,
     amount: 320.0,
+    time: DateTime(2025, 9, 17, 18, 45), // 6:45 PM
   ),
   Order(
     id: "ORD121",
@@ -53,6 +57,7 @@ const previousOrders = [
     customerLat: 12.9760,
     customerLng: 77.5990,
     amount: 890.0,
+    time: DateTime(2025, 9, 17, 14, 10), // 2:10 PM
   ),
   Order(
     id: "ORD120",
@@ -63,5 +68,6 @@ const previousOrders = [
     customerLat: 12.9760,
     customerLng: 77.5990,
     amount: 230.0,
+    time: DateTime(2025, 9, 16, 20, 5), // 8:05 PM
   ),
 ];
