@@ -1,4 +1,5 @@
 import 'package:driver_app/core/colors.dart';
+import 'package:driver_app/screens/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/order_screen.dart';
@@ -63,6 +64,7 @@ class DriverApp extends StatelessWidget {
       routes: {
         '/': (context) => const LoginScreen(),
         '/order': (context) => const OrderScreen(),
+        '/account': (context) => const AccountScreen(),
       },
     );
   }

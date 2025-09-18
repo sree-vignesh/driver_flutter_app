@@ -11,6 +11,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
+
+      // backgroundColor: AppColors.background,
       toolbarHeight: 100,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: 40,
           ),
           onPressed: () {
-            // profile
+            Navigator.pushNamed(context, '/account');
           },
         ),
         const SizedBox(width: 24),

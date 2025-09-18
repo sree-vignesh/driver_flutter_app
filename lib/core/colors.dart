@@ -8,7 +8,9 @@ class AppColors {
 
   // static const background = Color.fromRGBO(253, 253, 229, 1);
 
-  static const background = Color.fromRGBO(250, 247, 247, 1);
+  // static var background = Colors.orange.shade50;
+  static const background = Colors.white;
   static const textSecondary = Color.fromRGBO(158, 158, 158, 1);
-  static var scaffoldBackgroundColor = Colors.orange.shade50;
+  // static var scaffoldBackgroundColor = Colors.orange.shade50;
+  static var scaffoldBackgroundColor = const Color.fromARGB(255, 255, 255, 255);
 }

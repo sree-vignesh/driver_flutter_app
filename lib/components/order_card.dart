@@ -21,6 +21,8 @@ class OrderCard extends StatelessWidget {
       color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 0),
       elevation: 5,
+      shadowColor: Colors.black.withOpacity(0.9),
+
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(36),
