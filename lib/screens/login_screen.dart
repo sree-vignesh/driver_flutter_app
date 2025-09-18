@@ -79,11 +79,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 50),
 
                 TextField(
+                  keyboardType: TextInputType.phone,
                   controller: _emailController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    labelText: "Email",
+                    labelText: "Mobile Number",
                     labelStyle: TextStyle(color: Colors.grey.shade400),
                     prefixIcon: Icon(
                       Icons.email_outlined,
