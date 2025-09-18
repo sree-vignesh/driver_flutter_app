@@ -7,12 +7,14 @@ class OrderCard extends StatelessWidget {
   final Order order;
   final double? distanceToRestaurant;
   final double? distanceToCustomer;
+  final bool locationPermissionDenied;
 
   const OrderCard({
     super.key,
     required this.order,
     required this.distanceToRestaurant,
     required this.distanceToCustomer,
+    required this.locationPermissionDenied,
   });
 
   @override
@@ -75,6 +77,8 @@ class OrderCard extends StatelessWidget {
               subtitle:
                   (distanceToRestaurant != null && distanceToRestaurant! < 1000)
                   ? "You are ${distanceToRestaurant?.toStringAsFixed(0)} m away."
+                  : (locationPermissionDenied)
+                  ? "Location unavailable."
                   : "You are too far, get closer.",
 
               onTap: () => NavigationHelper.openGoogleMaps(
@@ -93,6 +97,8 @@ class OrderCard extends StatelessWidget {
               subtitle:
                   (distanceToCustomer != null && distanceToCustomer! < 1000)
                   ? "You are ${distanceToCustomer?.toStringAsFixed(0)} m away."
+                  : (locationPermissionDenied)
+                  ? "Location unavailable."
                   : "You are too far, get closer.",
               onTap: () => NavigationHelper.openGoogleMaps(
                 order.customerLat,

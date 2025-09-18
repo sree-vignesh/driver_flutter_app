@@ -54,7 +54,7 @@ class DriverApp extends StatelessWidget {
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.white, width: 0),
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(24),
           ),
           elevation: 0,
         ),

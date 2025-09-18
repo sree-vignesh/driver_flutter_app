@@ -23,16 +23,39 @@ class _OrderScreenState extends State<OrderScreen> {
   Position? currentPosition;
   Timer? locationTimer;
 
+  /// Track permission status
+  bool locationPermissionDenied = false;
+
   @override
   void initState() {
     super.initState();
-    _startLocationUpdates();
+    _checkAndRequestPermission();
   }
 
   @override
   void dispose() {
     locationTimer?.cancel();
     super.dispose();
+  }
+
+  Future<void> _checkAndRequestPermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      setState(() {
+        locationPermissionDenied = true;
+      });
+    } else {
+      setState(() {
+        locationPermissionDenied = false;
+      });
+      _startLocationUpdates();
+    }
   }
 
   void _startLocationUpdates() {
@@ -81,6 +104,11 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   void _nextStep() {
+    if (locationPermissionDenied) {
+      _showMessage("Location permission required to continue");
+      return;
+    }
+
     setState(() {
       switch (status) {
         case OrderStatus.notStarted:
@@ -114,10 +142,16 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   void _showMessage(String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        // margin: const EdgeInsets.only(bottom: 80, left: 16, right: 16),
+      ),
+    );
   }
 
   String _getButtonText() {
+    if (locationPermissionDenied) return "Enable Location Permission";
     switch (status) {
       case OrderStatus.notStarted:
         return "Start Trip";
@@ -135,6 +169,9 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   String _getStatusText() {
+    if (locationPermissionDenied) {
+      return "Please enable Location";
+    }
     switch (status) {
       case OrderStatus.notStarted:
         return "Not Yet Started";
@@ -173,27 +210,60 @@ class _OrderScreenState extends State<OrderScreen> {
 
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
-        child: SizedBox(
-          width: double.infinity,
-          height: 56, // match _barHeight
-          child: SliderButton(
-            text: _getButtonText(),
-            enabled: status != OrderStatus.delivered,
-            onConfirmed: _nextStep,
-          ),
-        ),
-      ),
+      floatingActionButton: locationPermissionDenied
+          ? FloatingActionButton.extended(
+              onPressed: _checkAndRequestPermission,
+              label: const Text("Tap to enable Location"),
+              icon: const Icon(Icons.location_disabled),
+            )
+          : SizedBox(
+              width:
+                  MediaQuery.of(context).size.width -
+                  48, // full width minus padding
+              height: 80,
+              child: SliderButton(
+                text: _getButtonText(),
+                enabled: status != OrderStatus.delivered,
+                onConfirmed: _nextStep,
+              ),
+            ),
       appBar: CustomAppBar(statusText: _getStatusText()),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(0),
+              child: OrderCard(
+                order: order,
+                distanceToRestaurant: distanceToRestaurant,
+                distanceToCustomer: distanceToCustomer,
+                locationPermissionDenied: locationPermissionDenied,
+              ),
+            ),
+          ),
+          // Bottom info when permission granted
+          if (!locationPermissionDenied)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  if (currentPosition != null)
+                    Text(
+                      "Your coords: ${currentPosition!.latitude}, ${currentPosition!.longitude}",
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Slide to proceed",
+                    style: TextStyle(color: AppColors.textSecondary),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ),
+            ),
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(0),
-        child: OrderCard(
-          order: order,
-          distanceToRestaurant: distanceToRestaurant,
-          distanceToCustomer: distanceToCustomer,
-        ),
+          const SizedBox(height: 140),
+        ],
       ),
     );
   }
