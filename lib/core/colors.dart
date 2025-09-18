@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const primary = Color.fromRGBO(204, 140, 2, 1);
+  // static const primary = Color.fromRGBO(197, 135, 0, 1);
 
   static const secondary = Color.fromRGBO(255, 165, 0, 1);
 

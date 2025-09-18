@@ -43,7 +43,7 @@ class DriverApp extends StatelessWidget {
         ),
         snackBarTheme: SnackBarThemeData(
           // elevation:0,
-          dismissDirection: DismissDirection.vertical, // allows swipe down
+          dismissDirection: DismissDirection.horizontal, // allows swipe down
           backgroundColor: AppColors.primary,
           contentTextStyle: TextStyle(
             color: Colors.white,

@@ -18,10 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = _passwordController.text.trim();
 
     if (email.isNotEmpty && password.isNotEmpty) {
-      const SnackBar(
-        content: Text("Succesfully logged in."),
-        backgroundColor: Colors.green,
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text("Succesfully logged in."),
+      //     backgroundColor: Colors.green,
+      //   ),
+      // );
 
       Navigator.pushReplacementNamed(context, '/order');
       // _showMessage();
