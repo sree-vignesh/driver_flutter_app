@@ -32,6 +32,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.account_circle_rounded,
+            color: AppColors.primary,
+            size: 40,
+          ),
+          onPressed: () {
+            // profile
+          },
+        ),
+        const SizedBox(width: 24),
+      ],
     );
   }
 
