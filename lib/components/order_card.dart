@@ -74,8 +74,7 @@ class OrderCard extends StatelessWidget {
               title: order.restaurantName,
 
               // if(distanceToRestaurant < 1000)
-              subtitle:
-                  (distanceToRestaurant != null && distanceToRestaurant! < 1000)
+              subtitle: (distanceToRestaurant != null)
                   ? "You are ${distanceToRestaurant?.toStringAsFixed(0)} m away."
                   : (locationPermissionDenied)
                   ? "Location unavailable."
@@ -94,8 +93,7 @@ class OrderCard extends StatelessWidget {
             _locationTile(
               icon: Icons.location_pin,
               title: order.customerName,
-              subtitle:
-                  (distanceToCustomer != null && distanceToCustomer! < 1000)
+              subtitle: (distanceToCustomer != null)
                   ? "You are ${distanceToCustomer?.toStringAsFixed(0)} m away."
                   : (locationPermissionDenied)
                   ? "Location unavailable."
