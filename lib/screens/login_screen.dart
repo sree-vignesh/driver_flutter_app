@@ -11,14 +11,20 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _obscureText = true;
 
   void _login() {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
     if (email.isNotEmpty && password.isNotEmpty) {
-      // Navigate to order screen
+      const SnackBar(
+        content: Text("Succesfully logged in."),
+        backgroundColor: Colors.green,
+      );
+
       Navigator.pushReplacementNamed(context, '/order');
+      // _showMessage();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please enter email & password")),
@@ -100,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -111,9 +117,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       Icons.lock_outline,
                       color: Colors.grey.shade400,
                     ),
-                    suffixIcon: Icon(
-                      Icons.visibility_off,
-                      color: Colors.grey.shade400,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        // Icons.visibility_off,
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.grey.shade400,
+                      ),
+                      onPressed: () {
+                        print(_obscureText);
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
                     ), // you can toggle this for show/hide
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),

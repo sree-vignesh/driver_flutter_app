@@ -90,7 +90,7 @@ class _OrderScreenState extends State<OrderScreen> {
           if (_canArriveRestaurant) {
             status = OrderStatus.atRestaurant;
           } else {
-            _showMessage("Move closer to restaurant");
+            _showMessage("Move closer to restaurant and try again.");
           }
           break;
         case OrderStatus.atRestaurant:
@@ -100,7 +100,7 @@ class _OrderScreenState extends State<OrderScreen> {
           if (_canArriveCustomer) {
             status = OrderStatus.atCustomer;
           } else {
-            _showMessage("Move closer to customer");
+            _showMessage("Move closer to customer and try again.");
           }
           break;
         case OrderStatus.atCustomer:
@@ -139,7 +139,7 @@ class _OrderScreenState extends State<OrderScreen> {
       case OrderStatus.notStarted:
         return "Not Yet Started";
       case OrderStatus.onTheWayToRestaurant:
-        return "On the way to the Restaurant";
+        return "On the way to pickup";
       case OrderStatus.atRestaurant:
         return "Waiting for pickup";
       case OrderStatus.pickedUp:
@@ -186,29 +186,7 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
       ),
       appBar: CustomAppBar(statusText: _getStatusText()),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   backgroundColor: Colors.white,
-      //   toolbarHeight: 100,
-      //   title: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       const Text(
-      //         "Hi, Captain!",
-      //         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-      //       ),
-      //       const SizedBox(height: 10),
-      //       Text(
-      //         _getStatusText(),
-      //         style: const TextStyle(
-      //           fontSize: 23,
-      //           color: AppColors.primary,
-      //           fontWeight: FontWeight.w600,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(0),
         child: OrderCard(

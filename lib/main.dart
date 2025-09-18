@@ -21,7 +21,7 @@ class DriverApp extends StatelessWidget {
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           surfaceTintColor: Colors.transparent,
-          // backgroundColor: AppColors.background,
+          backgroundColor: AppColors.scaffoldBackgroundColor,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -43,7 +43,7 @@ class DriverApp extends StatelessWidget {
         ),
         snackBarTheme: SnackBarThemeData(
           // elevation:0,
-          dismissDirection: DismissDirection.horizontal, // allows swipe down
+          dismissDirection: DismissDirection.vertical, // allows swipe down
           backgroundColor: AppColors.primary,
           contentTextStyle: TextStyle(
             color: Colors.white,
@@ -52,13 +52,14 @@ class DriverApp extends StatelessWidget {
           ),
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(120),
+            side: BorderSide(color: Colors.white, width: 0),
+            borderRadius: BorderRadius.circular(18),
           ),
           elevation: 0,
         ),
       ),
       initialRoute:
-          '/order', //using /order for development, change to / when submitting.
+          '/', //using /order for development, change to / when submitting.
       routes: {
         '/': (context) => const LoginScreen(),
         '/order': (context) => const OrderScreen(),
