@@ -133,6 +133,7 @@ class _OrderScreenState extends State<OrderScreen> {
           break;
         case OrderStatus.atCustomer:
           status = OrderStatus.delivered;
+          _showMessage("Order successfully delivered.");
           break;
         case OrderStatus.delivered:
           _showMessage("Order already delivered");
@@ -152,6 +153,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
   String _getButtonText() {
     if (locationPermissionDenied) return "Enable Location Permission";
+
     switch (status) {
       case OrderStatus.notStarted:
         return "Start Trip";

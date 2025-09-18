@@ -36,7 +36,7 @@ class AccountScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Colors.grey[300],
+                        backgroundColor: Colors.grey.shade100,
                         child: Icon(
                           Icons.person,
                           size: 40,

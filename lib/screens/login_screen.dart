@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  " Basic Driver App ",
+                  "Captain's Companion",
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
